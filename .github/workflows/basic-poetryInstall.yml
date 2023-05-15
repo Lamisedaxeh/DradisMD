@@ -1,0 +1,33 @@
+image: python:3.7
+
+on: [push]
+
+jobs:
+  steps:
+    - run
+    #  - test
+    #  - lint
+    #  - types
+
+  before_script:
+    - pip install poetry
+    - poetry config virtualenvs.create false
+    - poetry install
+  #Unit Tests:
+  #  stage: test
+  #  script:
+  #    - poetry run pytest
+  #
+  #Python Code Lint:
+  #  stage: lint
+  #  script:
+  #    - poetry run black .
+  #
+  #Static Type check:
+  #  stage: types
+  #  script:
+  #    - poetry run mypy .
+  Run:
+    stage: run
+    script:
+      - poetry run dradismd.py
